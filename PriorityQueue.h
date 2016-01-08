@@ -5,25 +5,25 @@
  */
 
 /* 
- * File:   main.c
+ * File:   PriorityQueue.h
  * Author: Cox Family
  *
- * Created on January 8, 2016, 1:34 PM
+ * Created on January 8, 2016, 1:56 PM
  */
 
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef PRIORITYQUEUE_H
+#define PRIORITYQUEUE_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 
-/*
- * 
- */
-int main(int argc, char** argv) {
 
-    return (EXIT_SUCCESS);
+
+#ifdef __cplusplus
 }
+#endif
 
-
-
-
+#endif /* PRIORITYQUEUE_H */
 
