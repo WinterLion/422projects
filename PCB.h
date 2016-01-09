@@ -17,12 +17,31 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+// number of registers
+#define NUMREGS 16
 
+enum state_type {new, ready, running, waiting, halted};
+
+typedef int address;
+
+// Defines the PCB struct type
 typedef struct pcb {
-    int Priority;
+    enum state_type state; /* current state  of the pcb */
+    address PC; /* where to resume */
+    int reg_file[NUMREGS]; /* contents of GPRs */
+    struct PCB *next_pcb; /* list ptr */
+    int Priority; /* extrinsic property */
+    address address_space; /* where in memory */
 } PCB;
-typedef PCB * PCB_p;
 
+// Defines the PCB_p which is a pointer to a PCB
+typedef PCB *PCB_p;
+
+/**
+ * Takes a PCB pointer and prints out the contents of the PCB
+ * @param PCB_p pointer referencing the PCB to print
+ */
+void toString(PCB_p pcb);
 
 #ifdef __cplusplus
 }
