@@ -30,6 +30,7 @@ const char* getStateName(enum state_type state)
 void toString(PCB_p pcb_p) {
     printf("PCB:\n");
 
+    printf("\tPID: %s\n", pcb_p->pid);
     printf("\tState: %s\n", getStateName(pcb_p->state));
     printf("\tPC: %d\n", pcb_p->PC);
 
@@ -38,7 +39,7 @@ void toString(PCB_p pcb_p) {
     if (pcb_p->reg_file) {
         int i;
         for (i = 0; i < NUMREGS; i++) {
-            printf("\t\tREG%d: %d\n", i + 1, pcb_p->reg_file[i]);
+            printf("\t\tREG%d: %d\n", i, pcb_p->reg_file[i]);
         }
         printf("\n");
     } else {
@@ -53,7 +54,7 @@ void toString(PCB_p pcb_p) {
     // otherwise print nothing
         printf("\tNext Struct Address: NULL\n");
     }
-    
+
     printf("\tPriority: %d\n", pcb_p->Priority);
     printf("\tAddress Space: %d\n", pcb_p->address_space);
 }
