@@ -20,12 +20,13 @@ extern "C" {
 // number of registers
 #define NUMREGS 16
 
-enum state_type {new, ready, running, waiting, halted};
+enum state_type {new, ready, running, waiting, interrupted, halted};
 
 typedef int address;
 
 // Defines the PCB struct type
 typedef struct pcb {
+    int pid; /** id of the pid */
     enum state_type state; /* current state  of the pcb */
     address PC; /* where to resume */
     int reg_file[NUMREGS]; /* contents of GPRs */
