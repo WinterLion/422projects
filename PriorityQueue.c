@@ -25,7 +25,7 @@ int priorityQueue() {
 }
 
 int addPCB(PCB thePCB) {
-    MainArray[thePCB.Priority]->Push(thePCB); 
+    MainArray[thePCB.Priority]->enqueue(thePCB); 
 }
 
 PCB GetNext() {
@@ -35,7 +35,7 @@ PCB GetNext() {
     
     while (keepGoing && priorityCounter < NumberOfPriorities) {
         if (!MainArray[priorityCounter]->isEmpty()) {
-            *answerPCB = MainArray[priorityCounter]->Pop();
+            *answerPCB = MainArray[priorityCounter]->dequeue();
             keepGoing = 1;
         }        
         priorityCounter++;
@@ -46,9 +46,9 @@ PCB GetNext() {
     return *answerPCB;
 }
 
-int PrintAll() {
-    int i;
-    for (i = 0; i < NumberOfPriorities; i++ ) {        
-      MainArray[i]->PrintAll();
-    }
-}
+// int PrintAll() {
+//     int i;
+//     for (i = 0; i < NumberOfPriorities; i++ ) {        
+//       MainArray[i]->PrintAll();
+//     }
+// }
