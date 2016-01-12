@@ -7,17 +7,23 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-
-
-void enqueue(PCB *block);
-PCB *dequeue();
-PCB *peek();
-int is_empty(); // Return 1 if empty
-int get_size();
+#include "PCB.h"
 
 #ifndef FIFO_QUEUE_H_
 #define FIFO_QUEUE_H_
-//#include "fifo_queue.c"
+
+typedef struct fifo_queue {
+	int size;
+	PCB_p front;
+	PCB_p back;
+} fifo_queue, FIFO_QUEUE, QUEUE, Q;
+
+fifo_queue *create_queue();
+void enqueue(fifo_queue *queue, PCB_p block);
+PCB_p dequeue(fifo_queue *queue);
+PCB_p peek(fifo_queue *queue);
+int is_empty(fifo_queue *queue); // Return 1 if empty
+int get_size(fifo_queue *queue);
+
 #endif /* fifo_queue.h */
 

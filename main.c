@@ -14,16 +14,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "PCB.h"
+#include "fifo_queue.h"
 
 /*
  * 
  */
 int main(int argc, char** argv) {
-
+	fifo_queue *q = create_queue();
     PCB pcb = {new, 0, 0, 0, 0, 0};
+    enqueue(q, &pcb);
     PCB pcb2 = {new, 0, 0, 0, 0, 0};
-    pcb.next_pcb = &pcb2;
-    toString(&pcb);
+    enqueue(q, &pcb2);
+    printf("Hello");
+//    pcb.next_pcb = &pcb2;
+//    toString(&pcb);
     return (EXIT_SUCCESS);
 }
 
