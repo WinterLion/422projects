@@ -24,6 +24,8 @@ PCB_p dequeue(fifo_queue *queue);
 PCB_p peek(fifo_queue *queue);
 int is_empty(fifo_queue *queue); // Return 1 if empty
 int get_size(fifo_queue *queue);
+void to_string(fifo_queue *queue);
+void to_string(fifo_queue *queue, PCB_p p);
 
 #endif /* fifo_queue.h */
 
