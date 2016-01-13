@@ -25,7 +25,7 @@ fifo_queue * create_queue() {
 // Add PCB block to this queue with the same priority as the others in this queue
 void enqueue(fifo_queue *queue, PCB_p block) {
 	// If the queue is empty
-	if (queue == NULL) {
+	if (!queue->front) {
 		queue->front = block;
 		queue->front->next_pcb = NULL;
 		queue->back = block;
