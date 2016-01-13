@@ -25,7 +25,8 @@ fifo_queue * create_queue() {
 // Add PCB block to this queue with the same priority as the others in this queue
 void enqueue(fifo_queue *queue, PCB_p block) {
 	// If the queue is empty
-	if (!queue->front) {
+	printf("%d", queue->size);
+	if (!queue->size) {
 		queue->front = block;
 		queue->front->next_pcb = NULL;
 		queue->back = block;
@@ -60,7 +61,7 @@ PCB_p peek(fifo_queue *queue) {
 // Returns 1 if this queue is empty, 0 otherwise
 int is_empty(fifo_queue *queue) {
 	int result;
-	if (queue->size)
+	if (!queue->size)
 		result = 1;
 	else
 		result = 0;
