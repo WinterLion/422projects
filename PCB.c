@@ -30,8 +30,8 @@ const char* getStateName(enum state_type state)
 void toString(PCB_p pcb_p) {
     printf("PCB:\n");
 
-    printf("\tPID: %s\n", pcb_p->pid);
     printf("\tState: %s\n", getStateName(pcb_p->state));
+    printf("\tPID: %d\n", pcb_p->pid);
     printf("\tPC: %d\n", pcb_p->PC);
 
     // prints the register files associated with this PCB

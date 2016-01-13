@@ -26,13 +26,13 @@ typedef int address;
 
 // Defines the PCB struct type
 typedef struct pcb {
-    int pid; /** id of the pid */
     enum state_type state; /* current state  of the pcb */
+    int pid; /** id of the pid */
     address PC; /* where to resume */
-    int reg_file[NUMREGS]; /* contents of GPRs */
     struct PCB *next_pcb; /* list ptr */
     int Priority; /* extrinsic property */
     address address_space; /* where in memory */
+    int reg_file[NUMREGS]; /* contents of GPRs */
 } PCB;
 
 // Defines the PCB_p which is a pointer to a PCB
