@@ -72,7 +72,7 @@ int get_size(fifo_queue *queue) {
 	return queue->size;
 }
 
-void to_string(fifo_queue *queue) {
+void to_string_enqueue(fifo_queue *queue) {
 	int i = 1;
 	PCB_p current = queue->front;
 	if (!current) {	// If queue is not empty
@@ -92,22 +92,23 @@ void to_string(fifo_queue *queue) {
 	}
 }
 
-void to_string(fifo_queue *queue, PCB_p p) {
+void to_string_dequeue(fifo_queue *queue, PCB_p p) {
 	int i = 1, j = 2;
 	PCB_p current = queue->front;
-	if (!current) {	// If queue is not empty
+	if (current) {	// If queue is not empty
 		if (queue->front == queue->back) {	// Only one element
-			printf("P1->");
+			printf("P%d->P%d->*\n", p->pid, queue->front->pid);
+			printf("P%d->", queue->front->pid);
 		} else {
+			printf("P%d->", p->pid);
 			while (current) {
-				printf("P%d->", i);
+				printf("P%d->", current->pid);
 				current = current->next_pcb;
-				i++;
 			}
-			current = queue->front->next;
+			printf("*\n");
+			current = queue->front;
 			while (current) {
-				printf("P%d->", j);
-				j++;
+				printf("P%d->", current->pid);
 				current = current->next_pcb;
 			}
 		}
