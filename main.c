@@ -20,7 +20,7 @@
  * 
  */
 int main(int argc, char** argv) {
-	// fifo_queue *q = create_queue();
+  // fifo_queue *q = create_queue();
  //    PCB pcb = {new, 0, 0, 0, 0, 0};
  //    enqueue(q, &pcb);
  //    PCB pcb2 = {new, 0, 0, 0, 0, 0};
@@ -29,15 +29,21 @@ int main(int argc, char** argv) {
 //    pcb.next_pcb = &pcb2;
 //    toString(&pcb);
 
-    PCB pcb = {new, 45, 1, 1, 1, 1, 1, 4, 5};
-    PCB pcb2 = {new, 23, 2, 0, 2, 2, 3, 2, 1};
-    pcb.next_pcb = &pcb2;
-    toString(&pcb);
-    toString(&pcb2);
+    fifo_queue *queue = create_queue();
+
+    PCB pcb = {new, 1, 23, 0, 23, 23, 23, 4, 5};
+    PCB pcb2 = {new, 2, 34, 0, 34, 34, 34, 2, 1};
+
+    enqueue(queue, &pcb);
+    to_string_enqueue(queue);
+
+    enqueue(queue, &pcb2);
+    to_string_enqueue(queue);
+
+    PCB_p pcb_removed = dequeue(queue);
+    to_string_dequeue(queue, pcb_removed);
+    // pcb.next_pcb = &pcb2;
+    // toString(&pcb);
+    // toString(&pcb2);
     return (EXIT_SUCCESS);
 }
-
-
-
-
-

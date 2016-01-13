@@ -75,7 +75,7 @@ int get_size(fifo_queue *queue) {
 void to_string_enqueue(fifo_queue *queue) {
 	int i = 1;
 	PCB_p current = queue->front;
-	if (!current) {	// If queue is not empty
+	if (current) {	// If queue is not empty
 		if (queue->front == queue->back) {	// Only one element
 			printf("P1->");
 		} else {
