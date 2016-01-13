@@ -11,8 +11,7 @@
  * @param enum state_type representing the current state
  * @return char* representing the state name
  */
-const char* getStateName(enum state_type state) 
-{
+const char* getStateName(enum state_type state) {
    switch (state) 
    {
       case new: return "NEW";
@@ -24,12 +23,43 @@ const char* getStateName(enum state_type state)
 }
 
 /**
+ * Takes a PCB pointer and prints out the abridged contents of the PCB
+ * @param PCB_p pointer referencing the PCB to print
+ */
+void toStringShort(PCB_p pcb_p) {
+    if (pcb_p != NULL) {
+            //contents: PID: 1, Priorty: 0, state: 1, PC: 0x0000, etc.
+    printf("contents: ");
+
+    printf("PID: %d, ", pcb_p->pid);
+    printf("Priority: %d, ", pcb_p->Priority);
+    printf("State: %s, ", getStateName(pcb_p->state));
+    printf("PC: %d, ", pcb_p->PC);
+
+    // if there exists a following pcb, print out the next address
+    if (pcb_p->next_pcb) {
+        printf("Next PCB Address: %d, ", &pcb_p->next_pcb);
+    } else {
+    // otherwise print nothing
+        printf("Next PCB Address: NULL, ");
+    }
+
+    
+    printf("Address Space: %d \n\n", pcb_p->address_space);
+    } else {
+        printf("Tried to print a NULL pcb. \n\n");
+    }
+
+}
+
+/**
  * Takes a PCB pointer and prints out the contents of the PCB
  * @param PCB_p pointer referencing the PCB to print
  */
 void toString(PCB_p pcb_p) {
     printf("PCB:\n");
 
+    printf("\tPID: %s\n", pcb_p->pid);
     printf("\tState: %s\n", getStateName(pcb_p->state));
     printf("\tPC: %d\n", pcb_p->PC);
 
@@ -38,7 +68,7 @@ void toString(PCB_p pcb_p) {
     if (pcb_p->reg_file) {
         int i;
         for (i = 0; i < NUMREGS; i++) {
-            printf("\t\tREG%d: %d\n", i + 1, pcb_p->reg_file[i]);
+            printf("\t\tREG%d: %d\n", i, pcb_p->reg_file[i]);
         }
         printf("\n");
     } else {
@@ -53,7 +83,7 @@ void toString(PCB_p pcb_p) {
     // otherwise print nothing
         printf("\tNext Struct Address: NULL\n");
     }
-    
+
     printf("\tPriority: %d\n", pcb_p->Priority);
     printf("\tAddress Space: %d\n", pcb_p->address_space);
 }

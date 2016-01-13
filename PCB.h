@@ -20,17 +20,25 @@ extern "C" {
 // number of registers
 #define NUMREGS 16
 
-enum state_type {new, ready, running, waiting, halted};
+enum state_type {new, ready, running, waiting, interrupted, halted};
 
 typedef int address;
 
 // Defines the PCB struct type
 typedef struct pcb {
+//    enum state_type state; /* current state  of the pcb */
+//    address PC; /* where to resume */
+//    int reg_file[NUMREGS]; /* contents of GPRs */
+//    struct pcb *next_pcb; /* list ptr */
+//    int Priority; /* extrinsic property */
+//    address address_space; /* where in memory */
+    int pid; /** id of the pid */
+    int Priority; /* extrinsic property */
     enum state_type state; /* current state  of the pcb */
     address PC; /* where to resume */
     int reg_file[NUMREGS]; /* contents of GPRs */
-    struct PCB *next_pcb; /* list ptr */
-    int Priority; /* extrinsic property */
+    struct pcb *next_pcb; /* list ptr */
+    
     address address_space; /* where in memory */
 } PCB;
 
@@ -42,7 +50,7 @@ typedef PCB *PCB_p;
  * @param PCB_p pointer referencing the PCB to print
  */
 void toString(PCB_p pcb);
-
+void toStringShort(PCB_p pcb);
 #ifdef __cplusplus
 }
 #endif
