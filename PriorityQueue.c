@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "FifoQueue.h"
+#include "fifo_queue.h"
 #include "PCB.h"
 
 /*
@@ -14,36 +14,45 @@
 
 #define NumberOfPriorities 16
 
-FifoQueue_p MainArray[NumberOfPriorities];
+fifo_queue *MainArray[NumberOfPriorities];
 
-int priorityQueue() {
+void priorityQueue() {
     int i;
     for (i = 0; i < NumberOfPriorities; i++ ) {
-      MainArray[i] = (FifoQueue_p)malloc(sizeof(FifoQueue));
-      MainArray[i] = malloc(sizeof(FifoQueue));
+      //MainArray[i] = (fifo_queue*)malloc(sizeof(fifo_queue));
+      MainArray[i] = create_queue();
+      //MainArray[i] = malloc(sizeof(FifoQueue));
     }
 }
 
 int addPCB(PCB thePCB) {
-    MainArray[thePCB.Priority]->enqueue(thePCB); 
+    int answer = 0;
+    if (thePCB.Priority > 0 && thePCB.Priority < NumberOfPriorities) {
+        enqueue(MainArray[thePCB.Priority], &thePCB); 
+        answer = 1;
+    } else {
+        printf("Tried to add PCB with out of bounds priority.");
+    }
+    return answer;
 }
 
-PCB GetNext() {
-    int keepGoing = 0;
+//returns the next PCB pointer in the priority queue or null if none in all the queues
+PCB_p GetNext() {
+    int keepGoing = 1;
     int priorityCounter = 0;
-    PCB *answerPCB = malloc(sizeof(PCB));
+    PCB_p answerPCB = NULL;
     
     while (keepGoing && priorityCounter < NumberOfPriorities) {
-        if (!MainArray[priorityCounter]->isEmpty()) {
-            *answerPCB = MainArray[priorityCounter]->dequeue();
-            keepGoing = 1;
+        if (!is_empty(MainArray[priorityCounter])) {
+            answerPCB = dequeue(MainArray[priorityCounter]);
+            keepGoing = 0;
         }        
         priorityCounter++;
     }
     if (keepGoing) {
         printf("Priority Queue is Empty");
     }   
-    return *answerPCB;
+    return answerPCB;
 }
 
 // int PrintAll() {

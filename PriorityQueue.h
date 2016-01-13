@@ -11,6 +11,8 @@
  * Created on January 8, 2016, 1:56 PM
  */
 
+#include "fifo_queue.h"
+
 #ifndef PRIORITYQUEUE_H
 #define PRIORITYQUEUE_H
 
@@ -18,8 +20,9 @@
 extern "C" {
 #endif
 
-
-
+void priorityQueue();
+int addPCB(PCB thePCB);
+PCB GetNext();
 
 #ifdef __cplusplus
 }
