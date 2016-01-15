@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "PCB.h"
 #include "fifo_queue.h"
+#include "testPriorityQueue.h"
 
 /*
  * 
@@ -46,6 +47,7 @@ int main(int argc, char** argv) {
     pcb_removed = dequeue(queue);
     to_string_dequeue(queue, pcb_removed);
 
+    testPQ();
     // pcb.next_pcb = &pcb2;
     // toString(&pcb);
     // toString(&pcb2);

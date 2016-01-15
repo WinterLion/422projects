@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   PriorityQueue.h
  * Author: Cox Family
@@ -19,10 +13,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-void priorityQueue();
-int addPCB(PCB thePCB);
-PCB GetNext();
+    
+fifo_queue *createPriorityQueue();
+int addPCB(PCB *thePCB, fifo_queue *thePQ);
+PCB_p GetNext(fifo_queue *thePQ);
+void PriorityQueuetoString(fifo_queue *thePQ);
 
 #ifdef __cplusplus
 }
