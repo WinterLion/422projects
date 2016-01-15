@@ -42,6 +42,10 @@ int main(int argc, char** argv) {
 
     PCB_p pcb_removed = dequeue(queue);
     to_string_dequeue(queue, pcb_removed);
+
+    pcb_removed = dequeue(queue);
+    to_string_dequeue(queue, pcb_removed);
+
     // pcb.next_pcb = &pcb2;
     // toString(&pcb);
     // toString(&pcb2);
