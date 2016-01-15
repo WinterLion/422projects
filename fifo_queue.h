@@ -28,4 +28,3 @@ void to_string_enqueue(fifo_queue *queue);
 void to_string_dequeue(fifo_queue *queue, PCB_p p);
 
 #endif /* fifo_queue.h */
-

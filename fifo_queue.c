@@ -25,7 +25,7 @@ fifo_queue * create_queue() {
 // Add PCB block to this queue with the same priority as the others in this queue
 void enqueue(fifo_queue *queue, PCB_p block) {
 	// If the queue is empty
-	printf("%d", queue->size);
+//	printf("%d", queue->size);
 	if (!queue->size) {
 		queue->front = block;
 		queue->front->next_pcb = NULL;
@@ -77,10 +77,10 @@ void to_string_enqueue(fifo_queue *queue) {
 	PCB_p current = queue->front;
 	if (!is_empty(queue)) {	// If queue is not empty
 		if (queue->front == queue->back) {	// Only one element
-			printf("P1->");
+			printf("P%d->", current->pid);
 		} else {
 			while (current) {
-				printf("P%d->", i);
+				printf("P%d->", current->pid);
 				current = current->next_pcb;
 				i++;
 			}
@@ -95,7 +95,7 @@ void to_string_enqueue(fifo_queue *queue) {
 void to_string_dequeue(fifo_queue *queue, PCB_p p) {
 	int i = 1, j = 2;
 	PCB_p current = queue->front;
-	if (!is_empty(queue)) {	// If queue is not empty
+	if (!is_empty(queue) || p) {	// If queue is not empty
 		if (queue->front == queue->back) {	// Only one element
 			printf("P%d->P%d->*\n", p->pid, queue->front->pid);
 			printf("P%d->", queue->front->pid);
@@ -118,6 +118,3 @@ void to_string_dequeue(fifo_queue *queue, PCB_p p) {
 		printf("This queue is empty!");
 	}
 }
-
-
-

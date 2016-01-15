@@ -28,20 +28,20 @@ const char* getStateName(enum state_type state)
  * @param PCB_p pointer referencing the PCB to print
  */
 void toString(PCB_p pcb_p) {
-    printf("PCB:\n");
+    printf("contents: ");
 
-    printf("\tState: %s\n", getStateName(pcb_p->state));
-    printf("\tPID: %d\n", pcb_p->pid);
-    printf("\tPC: %d\n", pcb_p->PC);
+    printf("State: %s  ", getStateName(pcb_p->state));
+    printf("PID: %d  ", pcb_p->pid);
+    printf("PC: %d  ", pcb_p->PC);
 
     // prints the register files associated with this PCB
-    printf("\tReg Files\n");
+    printf("Reg Files:  ");
     if (pcb_p->reg_file) {
         int i;
         for (i = 0; i < NUMREGS; i++) {
-            printf("\t\tREG%d: %d\n", i, pcb_p->reg_file[i]);
+            printf("REG%d: %d  ", i, pcb_p->reg_file[i]);
         }
-        printf("\n");
+        printf("  ");
     } else {
         printf("\t\tNONE\n\n");
     }
@@ -49,12 +49,12 @@ void toString(PCB_p pcb_p) {
     // if there exists a following pcb, print out the next address
     if (pcb_p->next_pcb) {
         PCB_p next = pcb_p->next_pcb;
-        printf("\tNext Struct Address: %d\n", next->address_space);
+        printf("Next Struct Address: %d  ", next->address_space);
     } else {
     // otherwise print nothing
-        printf("\tNext Struct Address: NULL\n");
+        printf("Next Struct Address: NULL  ");
     }
 
-    printf("\tPriority: %d\n", pcb_p->Priority);
-    printf("\tAddress Space: %d\n", pcb_p->address_space);
+    printf("Priority: %d  ", pcb_p->Priority);
+    printf("Address Space: %d\n\n  ", pcb_p->address_space);
 }

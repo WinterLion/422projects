@@ -24,4 +24,3 @@ void PriorityQueuetoString(fifo_queue *thePQ);
 #endif
 
 #endif /* PRIORITYQUEUE_H */
-
