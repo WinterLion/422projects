@@ -47,7 +47,7 @@ int addPCB(PCB *thePCB, fifo_queue *theArray) {
         enqueue((theArray + thePCB->Priority), thePCB); 
         answer = 1;
     } else {
-        printf("Tried to add PCB with out of bounds priority.");
+        printf("Tried to add PCB with out of bounds priority.\n");
     }
     return answer;
 }
@@ -67,7 +67,7 @@ PCB_p GetNext(fifo_queue *theArray) {
         priorityCounter++;
     }
     if (keepGoing) {
-        printf("Priority Queue is Empty");
+        printf("Priority Queue is Empty\n");
     }   
     return answerPCB;
 }

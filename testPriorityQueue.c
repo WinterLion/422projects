@@ -23,15 +23,19 @@
 int testPQ() {
     printf("\nTestPQ started\n");
     PCB pcb = {new, 1, 23, 0, 2, 23, 23, 4, 5}; 
-    //toString(&pcb);
-    
-    printf("Testing priority queue\n");
+    //toString(&pcb);   
     fifo_queue *thePQ = createPriorityQueue();
+    printf("Testing priority queue toString on empty\n");
+    PriorityQueuetoString(thePQ);
+    printf("Testing priority queue addPCB\n");   
     addPCB(&pcb, thePQ);
-    printf("Testing priority queue 1\n");
+    printf("Testing priority queue toString\n");
     PriorityQueuetoString(thePQ);
-    printf("Testing that I didn't mess up any queues 2\n");
+    printf("Testing that I didn't mess up any queues with the last toString\n");
     PriorityQueuetoString(thePQ);
-    //toString(&pcb);
+    printf("Testing GetNext \n");
+    toString(GetNext(thePQ));
+    printf("Testing GetNext on Empty PQ\n");
+    toString(GetNext(thePQ));
     return (EXIT_SUCCESS);
 }
